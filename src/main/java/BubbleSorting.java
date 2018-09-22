@@ -1,14 +1,16 @@
 package main.java;
 
+import org.w3c.dom.ls.LSInput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class BubbleSorting {
-    List<Integer> randomList;
+    private List<Integer> randomList;
 
     public List<Integer> creatingRandomList() {
-        List<Integer> randomList = new ArrayList<>();
+        this.randomList = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
             randomList.add(random.nextInt(100));
@@ -16,16 +18,27 @@ public class BubbleSorting {
         return randomList;
     }
 
-    public List<Integer> sorting() {
-        List<Integer> list = creatingRandomList();;
+    private List<Integer> sortingRandomList() {
+        ex: for (int j = 0; j < randomList.size(); j++) {
+            for (int i = 0; i < randomList.size() - 1; i++) {
+                if (randomList.get(i) > (randomList.get(i + 1))) {
+                    int replaece = randomList.get(i);
+                    randomList.set(i, randomList.get(i + 1));
+                    randomList.set(i + 1, replaece);
+                }
+            }
+        }
+        return randomList;
+    }
+
+    public List<Integer> sortingGivenList(List <Integer> list) {
         ex: for (int j = 0; j < list.size(); j++) {
             for (int i = 0; i < list.size() - 1; i++) {
                 if (list.get(i) > (list.get(i + 1))) {
                     int replaece = list.get(i);
-                    list.add(i, list.get(i + 1));
-                    list.add(i + 1, replaece);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, replaece);
                 }
-                else break ex;
             }
         }
         return list;
